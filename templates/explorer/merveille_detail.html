@@ -28,6 +28,18 @@
           {{ merveille.credit_photo }}
         </p>
       {% endif %}
+      {% if merveille.video_url %}
+        <p>
+          <a
+            class="btn"
+            href="{{ merveille.video_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Regarder la vidéo
+          </a>
+        </p>
+      {% endif %}
       <p><a class="btn" href="{% url 'explorer:accueil' %}">Retour à l'accueil</a></p>
     </article>
   </main>
