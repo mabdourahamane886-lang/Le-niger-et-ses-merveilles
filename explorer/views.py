@@ -4,15 +4,18 @@ from .models import MediaGalerie, Merveille, Region
 
 
 def accueil(request):
+    merveilles_publiees = Merveille.objects.filter(
+        publie=True
+    ).select_related("region")
     context = {
         "regions": Region.objects.all(),
         "regions_count": Region.objects.count(),
         "merveilles_count": Merveille.objects.filter(publie=True).count(),
-        "a_la_une": Merveille.objects.filter(
-            publie=True, est_a_la_une=True
-        ).select_related("region")[:6],
+        "a_la_une": merveilles_publiees.filter(est_a_la_une=True)[:6],
         "medias": MediaGalerie.objects.filter(publie=True).select_related("region")[:12],
     }
+    if not context["a_la_une"]:
+        context["a_la_une"] = merveilles_publiees[:6]
     return render(request, "explorer/accueil.html", context)
 
 

@@ -180,6 +180,10 @@ counters.forEach((counter) => counterObserver.observe(counter));
 const filterButtons = document.querySelectorAll(".filter-btn");
 const galleryItems = document.querySelectorAll(".gallery-item");
 
+galleryItems.forEach((item) => {
+  item.dataset.filterType = item.classList.contains("video") ? "video" : "image";
+});
+
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const filter = button.dataset.filter;
@@ -189,7 +193,7 @@ filterButtons.forEach((button) => {
 
     galleryItems.forEach((item) => {
       const shouldShow =
-        filter === "all" || item.classList.contains(filter);
+        filter === "all" || item.dataset.filterType === filter;
 
       if (shouldShow) {
         item.classList.remove("hidden");
@@ -197,6 +201,7 @@ filterButtons.forEach((button) => {
         item.classList.add("hidden");
       }
     });
+
   });
 });
 

@@ -47,6 +47,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#accueil" class="nav-link active">Accueil</a></li>
         <li><a href="#merveilles" class="nav-link">Merveilles</a></li>
+        <li><a href="#regions" class="nav-link">Régions</a></li>
         <li><a href="#culture" class="nav-link">Culture</a></li>
         <li><a href="#galerie" class="nav-link">Galerie</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -93,7 +94,7 @@
 
         <div class="hero-stats reveal-up">
           <div class="hero-stat">
-            <strong>8</strong>
+            <strong>{{ regions_count }}</strong>
             <span>Régions à explorer</span>
           </div>
 
@@ -337,10 +338,8 @@
 
         <div class="gallery-filters reveal-up">
           <button class="filter-btn active" data-filter="all">Tout voir</button>
-          <button class="filter-btn" data-filter="desert">Désert</button>
-          <button class="filter-btn" data-filter="culture">Culture</button>
-          <button class="filter-btn" data-filter="nature">Nature</button>
-          <button class="filter-btn" data-filter="ville">Villes</button>
+          <button class="filter-btn" data-filter="image">Photos</button>
+          <button class="filter-btn" data-filter="video">Vidéos</button>
         </div>
 
         <div class="gallery-grid">
