@@ -1217,7 +1217,7 @@
 
         <div class="gallery-grid">
           {% for media in medias %}
-          <figure class="gallery-item reveal" data-category="{{ media.region.slug|default:'culture' }}" data-caption="{{ media.legende|default:media.titre }}">
+          <figure class="gallery-item reveal" data-category="{% if media.type_media == 'video' %}video{% else %}culture{% endif %}" data-caption="{{ media.legende|default:media.titre }}">
             {% if media.image %}
               <img src="{{ media.image.url }}" alt="{{ media.titre }} au Niger" loading="lazy">
             {% endif %}
@@ -1478,6 +1478,9 @@
     galleryItems.forEach((item) => {
       item.addEventListener("click", () => {
         const image = item.querySelector("img");
+        if (!image) {
+          return;
+        }
         modalImage.src = image.src;
         modalImage.alt = image.alt;
         modalCaption.textContent = item.dataset.caption;
