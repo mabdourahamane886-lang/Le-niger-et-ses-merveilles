@@ -179,75 +179,46 @@
         </div>
 
         <div class="wonders-grid">
-          <article class="wonder-card featured reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1400&q=80"
-              alt="Paysage de désert"
-            />
+          {% for merveille in a_la_une %}
+          <a class="wonder-card {% if forloop.first %}featured {% endif %}reveal-up" href="{% url 'explorer:merveille_detail' merveille.slug %}">
+            {% if merveille.image_principale %}
+            <img src="{{ merveille.image_principale.url }}" alt="{{ merveille.titre }} au Niger" loading="lazy" />
+            {% else %}
+            <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1400&q=80" alt="{{ merveille.titre }} au Niger" loading="lazy" />
+            {% endif %}
             <div class="card-overlay"></div>
-            <div class="wonder-number">01</div>
+            <div class="wonder-number">{{ forloop.counter|stringformat:"02d" }}</div>
             <div class="wonder-content">
-              <p>Agadez</p>
-              <h3>Le désert du Ténéré</h3>
+              <p>{{ merveille.region.nom }}</p>
+              <h3>{{ merveille.titre }}</h3>
               <span>Explorer <b>→</b></span>
             </div>
-          </article>
+          </a>
+          {% empty %}
+          <p class="section-subtitle">Les premières merveilles seront bientôt publiées.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
 
-          <article class="wonder-card reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80"
-              alt="Montagnes et paysage naturel"
-            />
-            <div class="card-overlay"></div>
-            <div class="wonder-number">02</div>
-            <div class="wonder-content">
-              <p>Nord du Niger</p>
-              <h3>Les montagnes de l’Aïr</h3>
-              <span>Explorer <b>→</b></span>
-            </div>
-          </article>
-
-          <article class="wonder-card reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80"
-              alt="Girafe dans la savane"
-            />
-            <div class="card-overlay"></div>
-            <div class="wonder-number">03</div>
-            <div class="wonder-content">
-              <p>Kouré</p>
-              <h3>Les girafes de l’Ouest</h3>
-              <span>Explorer <b>→</b></span>
-            </div>
-          </article>
-
-          <article class="wonder-card reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80"
-              alt="Paysage vert et rivière"
-            />
-            <div class="card-overlay"></div>
-            <div class="wonder-number">04</div>
-            <div class="wonder-content">
-              <p>Niamey</p>
-              <h3>Le fleuve Niger</h3>
-              <span>Explorer <b>→</b></span>
-            </div>
-          </article>
-
-          <article class="wonder-card reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&w=1200&q=80"
-              alt="Marché et artisanat africain"
-            />
-            <div class="card-overlay"></div>
-            <div class="wonder-number">05</div>
-            <div class="wonder-content">
-              <p>Zinder</p>
-              <h3>Artisanat et traditions</h3>
-              <span>Explorer <b>→</b></span>
-            </div>
-          </article>
+    <section class="section region-directory" id="regions">
+      <div class="container">
+        <div class="section-heading centered reveal-up">
+          <p class="section-tag">Explorer par territoire</p>
+          <h2 class="section-title">Les régions du Niger</h2>
+          <p class="section-subtitle">Chaque région possède son histoire, ses paysages et ses savoir-faire.</p>
+        </div>
+        <div class="region-directory-grid">
+          {% for region in regions %}
+          <a class="region-directory-card reveal-up" href="{% url 'explorer:region_detail' region.slug %}">
+            <span>{{ forloop.counter|stringformat:"02d" }}</span>
+            <h3>{{ region.nom }}</h3>
+            <p>{{ region.resume|truncatewords:16 }}</p>
+            <b>Découvrir →</b>
+          </a>
+          {% empty %}
+          <p class="section-subtitle">Les régions seront bientôt ajoutées à l'encyclopédie.</p>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -256,12 +227,12 @@
     <section class="numbers-band">
       <div class="container numbers-grid">
         <div class="number-item reveal-up">
-          <strong class="counter" data-target="8">0</strong>
+          <strong class="counter" data-target="{{ regions_count }}">0</strong>
           <span>Régions</span>
         </div>
 
         <div class="number-item reveal-up">
-          <strong class="counter" data-target="1000">0</strong>
+          <strong class="counter" data-target="{{ merveilles_count }}">0</strong>
           <span>Possibilités de voyage</span>
         </div>
 
@@ -373,71 +344,22 @@
         </div>
 
         <div class="gallery-grid">
-          <figure class="gallery-item large desert reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80"
-              alt="Dunes du désert"
-            />
+          {% for media in medias %}
+          <figure class="gallery-item {{ media.type_media }} reveal-up">
+            {% if media.image %}
+            <img src="{{ media.image.url }}" alt="{{ media.titre }} au Niger" loading="lazy" />
+            {% else %}
+            <div class="gallery-placeholder">{{ media.titre }}</div>
+            {% endif %}
             <figcaption>
-              <span>Désert</span>
-              <h3>L’appel des dunes</h3>
+              <span>{{ media.get_type_media_display }}</span>
+              <h3>{{ media.titre }}</h3>
+              {% if media.credit %}<small>{{ media.credit }}</small>{% endif %}
             </figcaption>
           </figure>
-
-          <figure class="gallery-item nature reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1547970810-dc1eac37d174?auto=format&fit=crop&w=900&q=80"
-              alt="Girafe dans la nature"
-            />
-            <figcaption>
-              <span>Nature</span>
-              <h3>Faune sauvage</h3>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item culture reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=900&q=80"
-              alt="Scène culturelle africaine"
-            />
-            <figcaption>
-              <span>Culture</span>
-              <h3>Rythmes vivants</h3>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item ville reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=900&q=80"
-              alt="Rue et marché africain"
-            />
-            <figcaption>
-              <span>Ville</span>
-              <h3>Vie locale</h3>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item wide desert reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=1400&q=80"
-              alt="Paysage sous le soleil couchant"
-            />
-            <figcaption>
-              <span>Désert</span>
-              <h3>Horizon sans limite</h3>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item culture reveal-up">
-            <img
-              src="https://images.unsplash.com/photo-1541512416146-3cf58d6b27cc?auto=format&fit=crop&w=900&q=80"
-              alt="Tissu et artisanat"
-            />
-            <figcaption>
-              <span>Culture</span>
-              <h3>Couleurs du Niger</h3>
-            </figcaption>
-          </figure>
+          {% empty %}
+          <p class="section-subtitle">La galerie sera bientôt enrichie par les médias du projet.</p>
+          {% endfor %}
         </div>
       </div>
     </section>

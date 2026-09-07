@@ -206,6 +206,10 @@ galleryItems.forEach((item) => {
     const image = item.querySelector("img");
     const title = item.querySelector("h3");
 
+    if (!image) {
+      return;
+    }
+
     modalImage.src = image.src;
     modalImage.alt = image.alt;
     modalCaption.textContent = title ? title.textContent : "";
