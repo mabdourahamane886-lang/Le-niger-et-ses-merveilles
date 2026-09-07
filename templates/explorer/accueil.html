@@ -1,29 +1,21 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Le Niger et ses Merveilles : cultures, paysages, histoire, patrimoine et découvertes du Niger.">
-  <meta name="theme-color" content="#0b3d2e">
-  <title>LE NIGER ET SES MERVEILLES 🇳🇪</title>
+  <meta name="description" content="Le Niger et ses Merveilles - Découvrez le Niger autrement.">
+  <title>🇳🇪 Le Niger et ses Merveilles</title>
 
   <style>
     :root {
-      --green: #0b3d2e;
-      --green-dark: #061f18;
-      --green-light: #165944;
-      --sand: #d6a95f;
-      --sand-soft: #f0dfbf;
-      --ivory: #fbf7ef;
-      --earth: #b74734;
-      --text: #17261f;
-      --muted: #607167;
-      --white: #ffffff;
-      --border: rgba(11, 61, 46, 0.13);
-      --shadow: 0 18px 60px rgba(4, 38, 28, 0.15);
-      --radius: 22px;
-      --transition: 260ms ease;
+      --vert: #0b3d2e;
+      --vert-fonce: #05291e;
+      --or: #d7a84d;
+      --rouge: #c64b36;
+      --ivoire: #fffaf0;
+      --blanc: #ffffff;
+      --texte: #17241e;
+      --gris: #66756d;
     }
 
     * {
@@ -37,26 +29,11 @@
     }
 
     body {
-      background: var(--ivory);
-      color: var(--text);
+      color: var(--texte);
+      background: var(--ivoire);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
-    }
-
-    body.dark {
-      --ivory: #0b1511;
-      --white: #102019;
-      --text: #f5f0e6;
-      --muted: #b6c6bd;
-      --border: rgba(255, 255, 255, 0.12);
-      background: var(--ivory);
-    }
-
-    img {
-      display: block;
-      width: 100%;
-      object-fit: cover;
     }
 
     a {
@@ -64,351 +41,192 @@
       text-decoration: none;
     }
 
-    button,
-    input {
+    button {
+      cursor: pointer;
       font: inherit;
     }
 
-    button {
-      border: 0;
-      cursor: pointer;
-    }
-
     .container {
-      width: min(1160px, calc(100% - 36px));
+      width: min(1120px, calc(100% - 36px));
       margin: auto;
     }
 
     .section {
-      padding: 95px 0;
+      padding: 85px 0;
     }
 
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 25px;
-      margin-bottom: 38px;
-    }
-
-    .eyebrow {
-      color: var(--earth);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3 {
+    .section-title {
+      margin-bottom: 14px;
+      color: var(--vert);
       font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.08;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      line-height: 1.1;
     }
 
-    h2 {
-      margin-top: 10px;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      max-width: 720px;
+    .section-text {
+      max-width: 700px;
+      color: var(--gris);
+      font-size: 1rem;
     }
 
-    .lead {
-      color: var(--muted);
-      margin-top: 15px;
-      max-width: 650px;
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--rouge);
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 49px;
-      padding: 0 21px;
-      border-radius: 999px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: transform var(--transition), background var(--transition), color var(--transition);
+      display: inline-block;
+      padding: 14px 22px;
+      border: 0;
+      border-radius: 30px;
+      color: white;
+      background: var(--rouge);
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: transform 0.25s ease, background 0.25s ease;
     }
 
     .btn:hover {
+      background: #9f3423;
       transform: translateY(-3px);
     }
 
-    .btn-primary {
-      color: var(--white);
-      background: var(--earth);
-      box-shadow: 0 12px 22px rgba(183, 71, 52, 0.28);
-    }
-
-    .btn-primary:hover {
-      background: #923321;
-    }
-
     .btn-outline {
-      color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: transparent;
     }
 
     .btn-outline:hover {
-      color: var(--green);
-      background: var(--ivory);
+      color: var(--vert);
+      background: white;
     }
 
-    .btn-green {
-      color: var(--white);
-      background: var(--green);
-    }
-
-    /* Navigation */
-    .navbar {
+    /* NAVIGATION */
+    header {
       position: fixed;
-      z-index: 50;
+      z-index: 20;
       top: 0;
-      left: 0;
       width: 100%;
-      color: var(--white);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      transition: background var(--transition), box-shadow var(--transition);
+      color: white;
+      background: rgba(5, 41, 30, 0.95);
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.16);
     }
 
-    .navbar.scrolled {
-      color: var(--text);
-      background: rgba(251, 247, 239, 0.94);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(16px);
-    }
-
-    body.dark .navbar.scrolled {
-      background: rgba(11, 21, 17, 0.94);
-    }
-
-    .nav-inner {
-      min-height: 75px;
+    .navbar {
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 15px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      font-size: 0.83rem;
-      letter-spacing: 0.06em;
+    .logo {
+      font-size: 0.92rem;
+      font-weight: bold;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
     }
 
-    .flag {
-      font-size: 1.35rem;
-    }
-
-    .nav-links {
+    nav {
       display: flex;
-      align-items: center;
-      gap: 22px;
-      list-style: none;
-      font-size: 0.87rem;
-      font-weight: 700;
-    }
-
-    .nav-links a {
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      bottom: -7px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--earth);
-      transition: width var(--transition);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .icon-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      color: inherit;
-      background: rgba(255, 255, 255, 0.13);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-    }
-
-    .navbar.scrolled .icon-btn {
-      background: rgba(11, 61, 46, 0.08);
-      border-color: var(--border);
-    }
-
-    .menu-btn {
-      display: none;
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 800px;
-      color: var(--white);
-      position: relative;
-      display: grid;
-      align-items: center;
-      overflow: hidden;
-      background:
-        linear-gradient(90deg, rgba(1, 22, 16, 0.93) 0%, rgba(1, 22, 16, 0.60) 43%, rgba(1, 22, 16, 0.26) 100%),
-        url("https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg") center/cover;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 82% 27%, rgba(214, 169, 95, 0.26), transparent 25%),
-        linear-gradient(0deg, rgba(0, 0, 0, 0.38), transparent 38%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      padding-top: 115px;
-      max-width: 800px;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 8px 13px;
-      color: #fff6e6;
-      border: 1px solid rgba(255, 255, 255, 0.29);
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.08);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero h1 {
-      max-width: 760px;
-      margin-top: 22px;
-      font-size: clamp(3.2rem, 8vw, 6.9rem);
-      font-weight: 500;
-      letter-spacing: -0.05em;
-    }
-
-    .hero h1 span {
-      color: var(--sand-soft);
-      font-style: italic;
-    }
-
-    .hero-text {
-      max-width: 580px;
-      margin-top: 23px;
-      color: rgba(255, 255, 255, 0.86);
-      font-size: clamp(1rem, 2vw, 1.18rem);
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-top: 31px;
-    }
-
-    .hero-bottom {
-      position: absolute;
-      bottom: 31px;
-      left: 0;
-      right: 0;
-      z-index: 1;
-    }
-
-    .hero-bottom-inner {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
       gap: 20px;
     }
 
-    .photo-credit {
-      max-width: 410px;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 0.74rem;
+    nav a {
+      font-size: 0.9rem;
+      font-weight: bold;
     }
 
-    .scroll-hint {
+    nav a:hover {
+      color: var(--or);
+    }
+
+    .menu-button {
+      display: none;
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 7px;
+      color: white;
+      background: transparent;
+      font-size: 1.2rem;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 740px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 800;
+      color: white;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(215, 168, 77, 0.35), transparent 27%),
+        linear-gradient(130deg, rgba(5, 41, 30, 0.97), rgba(11, 61, 46, 0.85), rgba(184, 91, 48, 0.6));
+    }
+
+    .hero-content {
+      max-width: 780px;
+      padding-top: 90px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 20px;
+      color: #fff4d7;
+      background: rgba(255, 255, 255, 0.1);
       font-size: 0.78rem;
-      letter-spacing: 0.08em;
+      font-weight: bold;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
-    .scroll-dot {
-      width: 30px;
-      height: 46px;
-      padding: 6px 0;
-      border: 1px solid rgba(255, 255, 255, 0.62);
-      border-radius: 99px;
-      text-align: center;
+    h1 {
+      margin: 22px 0 20px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.1rem, 8vw, 6.4rem);
+      font-weight: normal;
+      line-height: 0.96;
     }
 
-    .scroll-dot::before {
-      content: "";
-      display: block;
-      width: 5px;
-      height: 8px;
-      margin: auto;
-      border-radius: 9px;
-      background: var(--sand-soft);
-      animation: scroll 1.5s infinite;
+    h1 span {
+      color: var(--or);
+      font-style: italic;
     }
 
-    @keyframes scroll {
-      0%, 100% { transform: translateY(0); opacity: 1; }
-      60% { transform: translateY(17px); opacity: 0.15; }
+    .hero p {
+      max-width: 570px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 1.13rem;
     }
 
-    /* Statistics */
-    .stats-wrap {
-      position: relative;
-      z-index: 3;
-      margin-top: -65px;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
     }
 
-    .stats {
+    /* STATISTIQUES */
+    .stats-box {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-radius: var(--radius);
+      margin-top: -55px;
       overflow: hidden;
-      color: var(--white);
-      background: var(--green);
-      box-shadow: var(--shadow);
+      border-radius: 18px;
+      color: white;
+      background: var(--vert);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.17);
     }
 
     .stat {
-      padding: 29px;
-      border-right: 1px solid rgba(255, 255, 255, 0.13);
+      padding: 27px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.17);
     }
 
     .stat:last-child {
@@ -417,1092 +235,623 @@
 
     .stat-number {
       display: block;
-      color: var(--sand-soft);
+      color: var(--or);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.35rem;
-      line-height: 1;
+      font-size: 2.4rem;
+      font-weight: bold;
     }
 
     .stat-label {
-      display: block;
-      margin-top: 8px;
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 0.79rem;
-      font-weight: 700;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.83rem;
     }
 
-    /* Feature cards */
-    .feature-grid {
+    /* MERVEILLES */
+    .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
+      margin-top: 38px;
     }
 
-    .feature-card {
-      min-height: 440px;
-      position: relative;
-      display: flex;
-      align-items: end;
+    .card {
       overflow: hidden;
-      border-radius: var(--radius);
-      color: var(--white);
-      background: var(--green);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-      isolation: isolate;
-      transition: transform var(--transition), box-shadow var(--transition);
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 10px 28px rgba(5, 41, 30, 0.12);
+      transition: transform 0.25s ease;
     }
 
-    .feature-card:hover {
+    .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.18);
     }
 
-    .feature-card img {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      transition: transform 650ms ease;
-      z-index: -2;
-    }
-
-    .feature-card:hover img {
-      transform: scale(1.08);
-    }
-
-    .feature-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(0deg, rgba(1, 23, 16, 0.97), rgba(1, 23, 16, 0.02) 74%);
-    }
-
-    .feature-content {
-      width: 100%;
-      padding: 25px;
-    }
-
-    .feature-icon {
+    .card-image {
+      height: 210px;
       display: grid;
-      width: 43px;
-      height: 43px;
-      margin-bottom: 58px;
       place-items: center;
-      border-radius: 50%;
-      background: var(--earth);
-      font-size: 1.2rem;
+      font-size: 4.2rem;
     }
 
-    .feature-content h3 {
-      font-size: 1.8rem;
-      font-weight: 500;
+    .desert {
+      background: linear-gradient(135deg, #c96d36, #f0bf6c, #fff0c2);
     }
 
-    .feature-content p {
-      margin-top: 8px;
-      color: rgba(255, 255, 255, 0.79);
-      font-size: 0.91rem;
+    .culture {
+      background: linear-gradient(135deg, #7d2c2c, #d87644, #f2c66d);
     }
 
-    .feature-link {
-      display: inline-block;
-      margin-top: 15px;
-      color: var(--sand-soft);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    .nature {
+      background: linear-gradient(135deg, #123f2d, #3e865a, #b7c968);
     }
 
-    /* Regions */
-    .regions-area {
-      background: var(--white);
+    .card-body {
+      padding: 23px;
+    }
+
+    .card h3 {
+      color: var(--vert);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.6rem;
+    }
+
+    .card p {
+      margin-top: 10px;
+      color: var(--gris);
+      font-size: 0.93rem;
+    }
+
+    /* REGIONS */
+    .regions {
+      background: #f0eadc;
     }
 
     .region-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 17px;
+      gap: 16px;
+      margin-top: 35px;
     }
 
-    .region-card {
-      min-height: 180px;
-      position: relative;
+    .region {
+      min-height: 150px;
       display: flex;
       align-items: end;
-      overflow: hidden;
-      border-radius: 17px;
-      color: var(--white);
-      background: var(--green);
-      isolation: isolate;
-      transition: transform var(--transition);
-    }
-
-    .region-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .region-card img {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      z-index: -2;
-    }
-
-    .region-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(0deg, rgba(0, 22, 15, 0.91), transparent 85%);
-    }
-
-    .region-card strong {
       padding: 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.4rem;
-      font-weight: 500;
-    }
-
-    /* Random section */
-    .random-section {
-      padding: 90px 0;
-      color: var(--white);
-      background:
-        linear-gradient(90deg, rgba(6, 31, 24, 0.95), rgba(6, 31, 24, 0.7)),
-        url("https://upload.wikimedia.org/wikipedia/commons/1/17/Niger%2C_Agadez_%2814%29%2C_scene_in_the_old_city.jpg") center/cover;
-    }
-
-    .random-inner {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 45px;
-    }
-
-    .random-inner h2 {
-      max-width: 650px;
-    }
-
-    .random-inner .lead {
-      color: rgba(255, 255, 255, 0.74);
-    }
-
-    .random-box {
-      padding: 27px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(11px);
-    }
-
-    .random-box small {
-      color: var(--sand-soft);
-      font-weight: 800;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .random-box h3 {
-      margin-top: 10px;
-      font-size: 2rem;
-      font-weight: 500;
-    }
-
-    .random-box p {
-      margin: 10px 0 20px;
-      color: rgba(255, 255, 255, 0.81);
-    }
-
-    /* Gallery */
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-bottom: 25px;
-    }
-
-    .filter-btn {
-      padding: 9px 14px;
-      color: var(--green);
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      background: transparent;
-      font-size: 0.79rem;
-      font-weight: 800;
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      color: var(--white);
-      border-color: var(--green);
-      background: var(--green);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 155px;
-      gap: 15px;
-    }
-
-    .gallery-item {
-      position: relative;
       overflow: hidden;
-      border-radius: 16px;
-      cursor: pointer;
-      background: var(--green);
+      border-radius: 14px;
+      color: white;
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.62), transparent),
+        linear-gradient(135deg, #0b3d2e, #c17d3f);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      transition: transform 0.25s ease;
     }
 
-    .gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
-    .gallery-item:nth-child(2) { grid-column: span 3; grid-row: span 2; }
-    .gallery-item:nth-child(3) { grid-column: span 4; grid-row: span 1; }
-    .gallery-item:nth-child(4) { grid-column: span 4; grid-row: span 1; }
-    .gallery-item:nth-child(5) { grid-column: span 4; grid-row: span 1; }
-    .gallery-item:nth-child(6) { grid-column: span 4; grid-row: span 1; }
-
-    .gallery-item img {
-      height: 100%;
-      transition: transform 500ms ease;
+    .region:nth-child(2n) {
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.62), transparent),
+        linear-gradient(135deg, #9f3d2c, #d9af5b);
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.09);
+    .region:nth-child(3n) {
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 0.62), transparent),
+        linear-gradient(135deg, #133d2e, #50845d);
     }
 
-    .gallery-caption {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      padding: 38px 15px 14px;
-      color: var(--white);
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.79));
-      font-size: 0.82rem;
-      font-weight: 800;
+    .region:hover {
+      transform: scale(1.03);
     }
 
-    .play {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      display: grid;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--green);
-      background: var(--ivory);
-      font-size: 0.9rem;
+    /* DECOUVERTE ALEATOIRE */
+    .discover {
+      color: white;
+      background: linear-gradient(130deg, #06271d, #0b3d2e, #9f432e);
     }
 
-    /* Magazine */
-    .magazine {
-      background: var(--white);
+    .discover .section-title {
+      color: white;
     }
 
-    .articles {
+    .discover .section-text {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .random-card {
+      margin-top: 30px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .random-card h3 {
+      margin-bottom: 9px;
+      color: var(--or);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+    }
+
+    .random-card p {
+      max-width: 720px;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    /* GALERIE */
+    .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 23px;
+      gap: 16px;
+      margin-top: 35px;
     }
 
-    .article {
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--ivory);
-      transition: transform var(--transition), box-shadow var(--transition);
+    .gallery-box {
+      min-height: 220px;
+      display: flex;
+      align-items: end;
+      padding: 17px;
+      border: 0;
+      border-radius: 16px;
+      color: white;
+      text-align: left;
+      background: linear-gradient(135deg, #b95135, #dbad55);
+      font-size: 1rem;
+      font-weight: bold;
+      transition: transform 0.25s ease;
     }
 
-    .article:hover {
-      transform: translateY(-7px);
-      box-shadow: var(--shadow);
+    .gallery-box:nth-child(2) {
+      background: linear-gradient(135deg, #0b3d2e, #4f8a61);
     }
 
-    .article img {
-      height: 210px;
+    .gallery-box:nth-child(3) {
+      background: linear-gradient(135deg, #6d3329, #d77748);
     }
 
-    .article-body {
-      padding: 21px;
+    .gallery-box:nth-child(4) {
+      background: linear-gradient(135deg, #40311e, #b8863b);
     }
 
-    .article-meta {
-      color: var(--earth);
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .gallery-box:nth-child(5) {
+      background: linear-gradient(135deg, #23415c, #7199ac);
     }
 
-    .article h3 {
-      margin-top: 10px;
-      font-size: 1.55rem;
-      font-weight: 500;
+    .gallery-box:nth-child(6) {
+      background: linear-gradient(135deg, #4d2f28, #b94c38);
     }
 
-    .article p {
-      margin-top: 11px;
-      color: var(--muted);
-      font-size: 0.9rem;
+    .gallery-box:hover {
+      transform: scale(1.03);
     }
 
-    /* Footer */
-    footer {
-      padding: 65px 0 24px;
-      color: rgba(255, 255, 255, 0.79);
-      background: var(--green-dark);
-    }
-
-    .footer-top {
+    /* CONTACT */
+    .contact-box {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-template-columns: 1fr 1fr;
       gap: 35px;
-      padding-bottom: 43px;
+      padding: 37px;
+      border-radius: 18px;
+      color: white;
+      background: var(--vert);
     }
 
-    .footer-brand {
-      color: var(--white);
+    .contact-box h2 {
+      color: var(--or);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.75rem;
+      font-size: 2.4rem;
     }
 
-    .footer-description {
-      max-width: 410px;
+    .contact-box p {
       margin-top: 13px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9px;
+      color: white;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.66);
+    }
+
+    .message {
+      min-height: 20px;
+      color: #ffdf9d;
       font-size: 0.9rem;
+      font-weight: bold;
     }
 
-    .footer-title {
-      color: var(--sand-soft);
-      margin-bottom: 12px;
-      font-size: 0.8rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin: 9px 0;
-      font-size: 0.9rem;
-    }
-
-    .footer-links a:hover {
-      color: var(--sand-soft);
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255, 255, 255, 0.13);
-      font-size: 0.78rem;
-    }
-
-    /* Modal */
-    .modal {
-      position: fixed;
-      z-index: 100;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.89);
-    }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal-content {
-      width: min(1000px, 100%);
-      position: relative;
-    }
-
-    .modal-content img {
-      max-height: 80vh;
-      border-radius: 14px;
-      object-fit: contain;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: -48px;
-      right: 0;
-      width: 38px;
-      height: 38px;
-      color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: 50%;
-      background: transparent;
-      font-size: 1.4rem;
-    }
-
-    .modal-caption {
-      padding: 13px 5px;
-      color: var(--white);
+    footer {
+      padding: 34px 0;
+      color: rgba(255, 255, 255, 0.72);
+      background: #041d15;
       text-align: center;
-      font-size: 0.84rem;
+      font-size: 0.88rem;
     }
 
-    /* Scroll animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 700ms ease, transform 700ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 900px) {
-      .nav-links {
-        position: absolute;
-        top: 75px;
-        right: 18px;
-        left: 18px;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 17px;
-        color: var(--text);
-        border-radius: 15px;
-        background: var(--ivory);
-        box-shadow: var(--shadow);
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .menu-btn {
-        display: block;
-      }
-
-      .stats,
-      .feature-grid,
-      .articles {
+    /* MOBILE */
+    @media (max-width: 850px) {
+      .cards,
+      .gallery {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .stat:nth-child(2) {
-        border-right: 0;
-      }
-
-      .stat:nth-child(-n+2) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-      }
-
       .region-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .random-inner {
+      .contact-box {
         grid-template-columns: 1fr;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 600px) {
-      .section {
-        padding: 68px 0;
-      }
-
-      .nav-inner {
-        min-height: 68px;
-      }
-
-      .brand {
-        font-size: 0.7rem;
-      }
-
-      .nav-actions .btn {
+    @media (max-width: 620px) {
+      nav {
+        position: absolute;
+        top: 72px;
+        right: 0;
+        left: 0;
         display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 18px;
+        background: var(--vert-fonce);
       }
 
-      .hero {
-        min-height: 735px;
+      nav.open {
+        display: flex;
       }
 
-      .hero-content {
-        padding-top: 100px;
+      nav a {
+        padding: 12px 0;
       }
 
-      .hero-bottom-inner {
+      .menu-button {
         display: block;
       }
 
-      .scroll-hint {
-        display: none;
+      .hero {
+        min-height: 660px;
       }
 
-      .stats-wrap {
-        margin-top: -25px;
-      }
-
-      .stats,
-      .feature-grid,
-      .articles,
-      .region-grid {
+      .stats-box,
+      .cards,
+      .gallery {
         grid-template-columns: 1fr;
       }
 
-      .stat,
-      .stat:nth-child(2) {
+      .stat {
         border-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.17);
       }
 
       .stat:last-child {
         border-bottom: 0;
       }
 
-      .section-head {
-        display: block;
-      }
-
-      .section-head .btn {
-        margin-top: 19px;
-      }
-
-      .gallery-grid {
+      .region-grid {
         grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 150px;
       }
 
-      .gallery-item:nth-child(n) {
-        grid-column: span 1;
-        grid-row: span 1;
+      .section {
+        padding: 65px 0;
       }
 
-      .gallery-item:nth-child(1) {
-        grid-column: span 2;
-        grid-row: span 2;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
+      .contact-box {
+        padding: 25px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="navbar" id="navbar">
-    <div class="container nav-inner">
-      <a href="#accueil" class="brand" aria-label="Retour à l'accueil">
-        <span class="flag">🇳🇪</span>
-        <span>Le Niger et ses Merveilles</span>
-      </a>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#merveilles">Merveilles</a></li>
-        <li><a href="#regions">Régions</a></li>
-        <li><a href="#galerie">Galerie</a></li>
-        <li><a href="#magazine">Magazine</a></li>
-      </ul>
+  <header>
+    <div class="container navbar">
+      <a href="#accueil" class="logo">🇳🇪 Le Niger et ses Merveilles</a>
 
-      <div class="nav-actions">
-        <button class="icon-btn" id="themeBtn" aria-label="Activer le mode sombre">◐</button>
-        <a class="btn btn-primary" href="#contact">Nous contacter</a>
-        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
-      </div>
+      <button class="menu-button" id="menuButton" aria-label="Ouvrir le menu">
+        ☰
+      </button>
+
+      <nav id="navigation">
+        <a href="#accueil">Accueil</a>
+        <a href="#merveilles">Merveilles</a>
+        <a href="#regions">Régions</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
   <main>
     <section class="hero" id="accueil">
       <div class="container hero-content">
-        <span class="hero-tag">🇳🇪 Patrimoine • Culture • Découverte</span>
+        <span class="hero-badge">Patrimoine • Culture • Découverte</span>
 
-        <h1>Découvrez le Niger <span>autrement.</span></h1>
+        <h1>
+          Découvrez le Niger
+          <span>autrement.</span>
+        </h1>
 
-        <p class="hero-text">
-          Des paysages immenses, des peuples, une histoire et des traditions.
-          Parcourez les trésors d’un pays exceptionnel, du Sahara aux rives du fleuve Niger.
+        <p>
+          Des paysages. Des peuples. Une histoire. Explorez les richesses
+          culturelles, naturelles et historiques d’un pays exceptionnel.
         </p>
 
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#regions">Explorer le Niger →</a>
+        <div class="hero-actions">
+          <a class="btn" href="#regions">Explorer le Niger</a>
           <a class="btn btn-outline" href="#galerie">Voir la galerie</a>
-        </div>
-      </div>
-
-      <div class="hero-bottom">
-        <div class="container hero-bottom-inner">
-          <p class="photo-credit">
-            Photo d’illustration : Grande Mosquée et vieille ville d’Agadez.
-            Vérifie toujours les informations de licence et conserve le crédit du photographe.
-          </p>
-
-          <a href="#merveilles" class="scroll-hint">
-            <span class="scroll-dot"></span>
-            Défiler pour découvrir
-          </a>
         </div>
       </div>
     </section>
 
-    <div class="stats-wrap">
-      <div class="container">
-        <section class="stats" aria-label="Statistiques du site">
-          <article class="stat">
-            <strong class="stat-number" data-target="8">0</strong>
-            <span class="stat-label">Territoires à explorer</span>
-          </article>
+    <div class="container">
+      <section class="stats-box">
+        <article class="stat">
+          <strong class="stat-number">8</strong>
+          <span class="stat-label">Territoires à explorer</span>
+        </article>
 
-          <article class="stat">
-            <strong class="stat-number" data-target="50">0</strong>
-            <span class="stat-label">Merveilles à raconter</span>
-          </article>
+        <article class="stat">
+          <strong class="stat-number">50+</strong>
+          <span class="stat-label">Merveilles à raconter</span>
+        </article>
 
-          <article class="stat">
-            <strong class="stat-number" data-target="100">0</strong>
-            <span class="stat-label">Histoires à partager</span>
-          </article>
+        <article class="stat">
+          <strong class="stat-number">100+</strong>
+          <span class="stat-label">Histoires à partager</span>
+        </article>
 
-          <article class="stat">
-            <strong class="stat-number" data-target="1">0</strong>
-            <span class="stat-label">Pays, mille émotions</span>
-          </article>
-        </section>
-      </div>
+        <article class="stat">
+          <strong class="stat-number">1</strong>
+          <span class="stat-label">Pays aux mille émotions</span>
+        </article>
+      </section>
     </div>
 
     <section class="section" id="merveilles">
       <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">Nos grandes merveilles</p>
-            <h2>Une terre qui mérite d’être racontée.</h2>
-            <p class="lead">
-              Nature, patrimoine, artisanat et traditions : découvre les multiples visages du Niger avec respect et curiosité.
-            </p>
-          </div>
-          <a href="#galerie" class="btn btn-green">Tout explorer</a>
-        </div>
+        <span class="label">Nos grandes merveilles</span>
+        <h2 class="section-title">Le Niger est une merveille.</h2>
+        <p class="section-text">
+          Un pays à découvrir à travers son Sahara, ses villes historiques,
+          ses paysages, ses traditions et ses savoir-faire.
+        </p>
 
-        <div class="feature-grid">
-          <article class="feature-card reveal">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg"
-              alt="Grande Mosquée d'Agadez au Niger"
-              loading="lazy"
-            >
-            <div class="feature-content">
-              <span class="feature-icon">🕌</span>
-              <h3>Patrimoine</h3>
-              <p>Les villes historiques, les architectures de terre et les récits qui traversent les générations.</p>
-              <a class="feature-link" href="#galerie">Découvrir →</a>
+        <div class="cards">
+          <article class="card">
+            <div class="card-image desert">🏜️</div>
+            <div class="card-body">
+              <h3>Déserts & Sahara</h3>
+              <p>
+                Les dunes, les reliefs, les horizons du Nord et les paysages
+                qui font rêver les voyageurs.
+              </p>
             </div>
           </article>
 
-          <article class="feature-card reveal">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/1/17/Niger%2C_Agadez_%2814%29%2C_scene_in_the_old_city.jpg"
-              alt="Scène dans la vieille ville d'Agadez au Niger"
-              loading="lazy"
-            >
-            <div class="feature-content">
-              <span class="feature-icon">🏜️</span>
-              <h3>Sahara & paysages</h3>
-              <p>Des horizons sans fin, des reliefs et les paysages impressionnants du Nord nigérien.</p>
-              <a class="feature-link" href="#regions">Explorer →</a>
-            </div>
-          </article>
-
-          <article class="feature-card reveal">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg"
-              alt="Architecture traditionnelle en banco à Agadez"
-              loading="lazy"
-            >
-            <div class="feature-content">
-              <span class="feature-icon">🥁</span>
+          <article class="card">
+            <div class="card-image culture">🥁</div>
+            <div class="card-body">
               <h3>Cultures vivantes</h3>
-              <p>Musique, langues, savoir-faire, vêtements et fêtes : une richesse humaine à valoriser.</p>
-              <a class="feature-link" href="#magazine">Lire les récits →</a>
+              <p>
+                Musique, artisanat, langues, vêtements et traditions :
+                des patrimoines à raconter avec respect.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image nature">🌿</div>
+            <div class="card-body">
+              <h3>Nature & paysages</h3>
+              <p>
+                Fleuve, faune, espaces naturels et lieux de découverte :
+                la diversité du Niger en images et en récits.
+              </p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section regions-area" id="regions">
+    <section class="section regions" id="regions">
       <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">Explorez par territoire</p>
-            <h2>Les régions et Niamey.</h2>
-            <p class="lead">
-              Clique sur une carte pour préparer les futures pages détaillées de chaque territoire.
-            </p>
-          </div>
-        </div>
+        <span class="label">Explorez par région</span>
+        <h2 class="section-title">Les territoires du Niger.</h2>
+        <p class="section-text">
+          Choisissez une région pour découvrir son histoire, ses paysages,
+          sa gastronomie, son artisanat et ses traditions.
+        </p>
 
         <div class="region-grid">
-          {% for region in regions %}
-            <a href="{% url 'explorer:region_detail' region.slug %}" class="region-card reveal">
-              {% if region.image_couverture %}
-                <img src="{{ region.image_couverture.url }}" alt="{{ region.nom }} au Niger" loading="lazy">
-              {% else %}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg" alt="{{ region.nom }} au Niger" loading="lazy">
-              {% endif %}
-              <strong>{{ region.nom }}</strong>
-            </a>
-          {% empty %}
-            <p class="lead">Les régions seront bientôt disponibles.</p>
-          {% endfor %}
+          <a class="region" href="#contact">Agadez</a>
+          <a class="region" href="#contact">Diffa</a>
+          <a class="region" href="#contact">Dosso</a>
+          <a class="region" href="#contact">Maradi</a>
+          <a class="region" href="#contact">Niamey</a>
+          <a class="region" href="#contact">Tahoua</a>
+          <a class="region" href="#contact">Tillabéri</a>
+          <a class="region" href="#contact">Zinder</a>
         </div>
       </div>
     </section>
 
-    <section class="random-section">
-      <div class="container random-inner">
-        <div class="reveal">
-          <p class="eyebrow" style="color:#f0dfbf;">Laissez-vous surprendre</p>
-          <h2>Chaque visite peut devenir une nouvelle découverte.</h2>
-          <p class="lead">
-            Utilise le bouton pour sélectionner au hasard une idée de contenu à développer ou à explorer sur le site.
-          </p>
-        </div>
+    <section class="section discover">
+      <div class="container">
+        <span class="label" style="color:#f6d590;">Découvrir au hasard</span>
+        <h2 class="section-title">Laissez-vous surprendre.</h2>
+        <p class="section-text">
+          Cliquez sur le bouton pour recevoir une idée de découverte à ajouter
+          ou à explorer sur votre plateforme.
+        </p>
 
-        <aside class="random-box reveal">
-          <small>Merveille au hasard</small>
+        <div class="random-card">
           <h3 id="randomTitle">Le centre historique d’Agadez</h3>
           <p id="randomText">
-            Une ville historique reconnue pour son architecture de terre et ses échanges transsahariens.
+            Une ville historique du Sahara connue pour son architecture en terre
+            et sa Grande Mosquée emblématique.
           </p>
-          <button class="btn btn-primary" id="randomBtn">Découvrir au hasard ↻</button>
-        </aside>
+          <button class="btn" id="randomButton">Découvrir une autre merveille</button>
+        </div>
       </div>
     </section>
 
     <section class="section" id="galerie">
       <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">Galerie immersive</p>
-            <h2>Regarder. Écouter. Ressentir.</h2>
-            <p class="lead">
-              Une sélection de médias visuels. Clique sur une image pour l’ouvrir en plein écran.
-            </p>
-          </div>
-        </div>
+        <span class="label">Galerie immersive</span>
+        <h2 class="section-title">Images, vidéos et histoires.</h2>
+        <p class="section-text">
+          Ces blocs sont prêts à recevoir tes vraies photos téléchargées dans
+          le dossier <strong>images</strong> de ton projet.
+        </p>
 
-        <div class="filter-row reveal">
-          <button class="filter-btn active" data-filter="all">Tout</button>
-          <button class="filter-btn" data-filter="patrimoine">Patrimoine</button>
-          <button class="filter-btn" data-filter="culture">Culture</button>
-          <button class="filter-btn" data-filter="paysage">Paysages</button>
-          <button class="filter-btn" data-filter="video">Vidéos</button>
-        </div>
+        <div class="gallery">
+          <button class="gallery-box" onclick="showGalleryMessage('Ajoute une vraie photo du désert du Ténéré dans le dossier images.')">
+            🏜️ Déserts et paysages
+          </button>
 
-        <div class="gallery-grid">
-          {% for media in medias %}
-          <figure class="gallery-item reveal" data-category="{{ media.region.slug|default:'culture' }}" data-caption="{{ media.legende|default:media.titre }}">
-            {% if media.image %}
-              <img src="{{ media.image.url }}" alt="{{ media.titre }} au Niger" loading="lazy">
-            {% endif %}
-            {% if media.type_media == "video" %}<span class="play">▶</span>{% endif %}
-            <figcaption class="gallery-caption">{{ media.titre }}</figcaption>
-          </figure>
-          {% empty %}
-          <figure class="gallery-item reveal" data-category="patrimoine" data-caption="Grande Mosquée et vieille ville d’Agadez — Wikimedia Commons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg" alt="Grande Mosquée d'Agadez au Niger" loading="lazy">
-            <figcaption class="gallery-caption">Agadez : patrimoine de terre</figcaption>
-          </figure>
+          <button class="gallery-box" onclick="showGalleryMessage('Ajoute une photo ou vidéo du fleuve Niger et de Niamey.')">
+            🌊 Fleuve Niger
+          </button>
 
-          <figure class="gallery-item reveal" data-category="culture" data-caption="Scène dans le centre historique d’Agadez — Wikimedia Commons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Niger%2C_Agadez_%2814%29%2C_scene_in_the_old_city.jpg" alt="Vieille ville d'Agadez" loading="lazy">
-            <figcaption class="gallery-caption">Vieille ville d’Agadez</figcaption>
-          </figure>
+          <button class="gallery-box" onclick="showGalleryMessage('Ajoute une photo autorisée du patrimoine d’Agadez.')">
+            🕌 Patrimoine d’Agadez
+          </button>
 
-          <figure class="gallery-item reveal" data-category="patrimoine" data-caption="Architecture traditionnelle du centre historique d’Agadez — Wikimedia Commons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg" alt="Architecture traditionnelle à Agadez" loading="lazy">
-            <figcaption class="gallery-caption">Architecture traditionnelle</figcaption>
-          </figure>
+          <button class="gallery-box" onclick="showGalleryMessage('Ajoute des photos d’artisanat avec le crédit de chaque auteur.')">
+            🎨 Artisanat nigérien
+          </button>
 
-          <figure class="gallery-item reveal" data-category="paysage" data-caption="Scène urbaine historique à Agadez — Wikimedia Commons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Niger%2C_Agadez_%2814%29%2C_scene_in_the_old_city.jpg" alt="Vue du centre d'Agadez" loading="lazy">
-            <figcaption class="gallery-caption">Agadez et son histoire</figcaption>
-          </figure>
+          <button class="gallery-box" onclick="showGalleryMessage('Ajoute tes vidéos TikTok ou YouTube avec des liens autorisés.')">
+            ▶ Vidéos du Niger
+          </button>
 
-          <figure class="gallery-item reveal" data-category="video" data-caption="Ajoute ici une vidéo YouTube ou une vidéo autorisée provenant de ton propre compte.">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg" alt="Miniature vidéo sur Agadez" loading="lazy">
-            <span class="play">▶</span>
-            <figcaption class="gallery-caption">Vidéo : découvrir Agadez</figcaption>
-          </figure>
-
-          <figure class="gallery-item reveal" data-category="culture" data-caption="Le patrimoine est vivant : ajoute tes photos et crédits réels dans cette galerie.">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Niger%2C_Agadez_%2814%29%2C_scene_in_the_old_city.jpg" alt="Patrimoine culturel d'Agadez" loading="lazy">
-            <figcaption class="gallery-caption">Mémoire et transmission</figcaption>
-          </figure>
-          {% endfor %}
+          <button class="gallery-box" onclick="showGalleryMessage('Ajoute des photos représentant les traditions avec respect et autorisation.')">
+            🥁 Traditions et cultures
+          </button>
         </div>
       </div>
     </section>
 
-    <section class="section magazine" id="magazine">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="section-head reveal">
+        <div class="contact-box">
           <div>
-            <p class="eyebrow">Magazine</p>
-            <h2>Le Niger raconté avec fierté.</h2>
-            <p class="lead">
-              Des articles conçus pour faire découvrir, informer et valoriser les richesses du pays.
+            <span class="label" style="color:#f6d590;">Contact</span>
+            <h2>Partagez une merveille du Niger.</h2>
+            <p>
+              Proposez une histoire, une photo autorisée, une vidéo ou un lieu
+              à mettre en valeur sur la plateforme.
             </p>
           </div>
-          <a href="#contact" class="btn btn-green">Voir les articles</a>
-        </div>
 
-        <div class="articles">
-          <article class="article reveal">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg" alt="Grande Mosquée d'Agadez" loading="lazy">
-            <div class="article-body">
-              <span class="article-meta">Patrimoine • Agadez</span>
-              <h3>Découvrir le centre historique d’Agadez</h3>
-              <p>Une introduction à une ville historique du Sahara et à son architecture emblématique.</p>
-            </div>
-          </article>
-
-          <article class="article reveal">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Niger%2C_Agadez_%2814%29%2C_scene_in_the_old_city.jpg" alt="Vieille ville d'Agadez au Niger" loading="lazy">
-            <div class="article-body">
-              <span class="article-meta">Culture • Niger</span>
-              <h3>Les cultures qui font la richesse du Niger</h3>
-              <p>Valoriser les traditions, les langues, les savoir-faire et les voix des communautés.</p>
-            </div>
-          </article>
-
-          <article class="article reveal">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Niger%2C_Agadez_%2828%29%2C_grand_mosque%2C_old_city.jpg" alt="Architecture traditionnelle nigérienne" loading="lazy">
-            <div class="article-body">
-              <span class="article-meta">Voyage • Inspiration</span>
-              <h3>10 idées de découvertes au Niger</h3>
-              <p>Une future sélection de lieux, de récits et d’expériences à présenter sur la plateforme.</p>
-            </div>
-          </article>
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Votre nom" required>
+            <input type="email" id="email" placeholder="Votre email" required>
+            <textarea id="subject" placeholder="Votre message" required></textarea>
+            <button class="btn" type="submit">Envoyer le message</button>
+            <p class="message" id="formMessage"></p>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
-  <footer id="contact">
+  <footer>
     <div class="container">
-      <div class="footer-top">
-        <div>
-          <p class="footer-brand">🇳🇪 Le Niger et ses Merveilles</p>
-          <p class="footer-description">
-            Notre terre. Nos cultures. Notre histoire. Notre avenir.
-            Une plateforme créée pour raconter et valoriser le Niger.
-          </p>
-        </div>
-
-        <div>
-          <p class="footer-title">Explorer</p>
-          <ul class="footer-links">
-            <li><a href="#regions">Les régions</a></li>
-            <li><a href="#merveilles">Les merveilles</a></li>
-            <li><a href="#galerie">La galerie</a></li>
-            <li><a href="#magazine">Le magazine</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <p class="footer-title">Contact</p>
-          <ul class="footer-links">
-            <li><a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></li>
-            <li><a href="mailto:contact@lenigeretsesmerveilles.com">Email du projet</a></li>
-            <li><a href="#">TikTok</a></li>
-            <li><a href="#">YouTube</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>© <span id="year"></span> Le Niger et ses Merveilles.</span>
-        <span>Un projet culturel soutenu par Bickrion.</span>
-      </div>
+      <p>© <span id="year"></span> 🇳🇪 Le Niger et ses Merveilles — Un projet Bickrion.</p>
+      <p>Notre terre. Nos cultures. Notre histoire. Notre avenir.</p>
     </div>
   </footer>
 
-  <div class="modal" id="imageModal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose" aria-label="Fermer l'image">×</button>
-      <img id="modalImage" src="" alt="">
-      <p class="modal-caption" id="modalCaption"></p>
-    </div>
-  </div>
-
   <script>
-    const navbar = document.getElementById("navbar");
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-    const themeBtn = document.getElementById("themeBtn");
-    const revealElements = document.querySelectorAll(".reveal");
-    const counters = document.querySelectorAll(".stat-number");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const galleryItems = document.querySelectorAll(".gallery-item");
-    const modal = document.getElementById("imageModal");
-    const modalImage = document.getElementById("modalImage");
-    const modalCaption = document.getElementById("modalCaption");
-    const modalClose = document.getElementById("modalClose");
+    const menuButton = document.getElementById("menuButton");
+    const navigation = document.getElementById("navigation");
+    const randomButton = document.getElementById("randomButton");
+    const randomTitle = document.getElementById("randomTitle");
+    const randomText = document.getElementById("randomText");
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
 
     const discoveries = [
       {
         title: "Le centre historique d’Agadez",
-        text: "Une ville historique saharienne reconnue pour son architecture en terre et ses échanges transsahariens."
+        text: "Une ville historique du Sahara connue pour son architecture en terre et sa Grande Mosquée emblématique."
       },
       {
         title: "Les paysages du Sahara nigérien",
-        text: "Un univers de dunes, de roche et de lumière, à raconter avec des photos et témoignages authentiques."
-      },
-      {
-        title: "Les savoir-faire artisanaux",
-        text: "Bijoux, cuir, textile, objets traditionnels : une richesse de gestes et de transmission."
+        text: "Des dunes, des reliefs et des horizons immenses qui racontent la force du désert."
       },
       {
         title: "Les rives du fleuve Niger",
-        text: "Des paysages, des marchés, des activités et une vie quotidienne façonnée par le fleuve."
+        text: "Des paysages, des activités quotidiennes et une vie sociale façonnée par le fleuve."
       },
       {
-        title: "Les traditions et les fêtes",
-        text: "Mettre en avant les célébrations, les musiques et les expressions culturelles avec respect."
+        title: "Les savoir-faire artisanaux",
+        text: "Bijoux, cuir, textile et objets traditionnels : des gestes précieux transmis entre générations."
+      },
+      {
+        title: "Les traditions culturelles",
+        text: "Musique, fêtes, expressions artistiques et patrimoines vivants à mettre en lumière avec respect."
       }
     ];
 
-    function updateNavbar() {
-      navbar.classList.toggle("scrolled", window.scrollY > 30);
+    menuButton.addEventListener("click", function () {
+      navigation.classList.toggle("open");
+    });
+
+    document.querySelectorAll("nav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navigation.classList.remove("open");
+      });
+    });
+
+    randomButton.addEventListener("click", function () {
+      const index = Math.floor(Math.random() * discoveries.length);
+      randomTitle.textContent = discoveries[index].title;
+      randomText.textContent = discoveries[index].text;
+    });
+
+    function showGalleryMessage(message) {
+      alert(message);
     }
 
-    window.addEventListener("scroll", updateNavbar);
-    updateNavbar();
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
+      const name = document.getElementById("name").value.trim();
 
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-      });
-    });
+      formMessage.textContent =
+        "Merci " + name + " ! Ton message a été préparé. Pour l’envoyer réellement, connecte ce formulaire à Django, Formspree ou WhatsApp.";
 
-    themeBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      themeBtn.textContent = document.body.classList.contains("dark") ? "☀" : "◐";
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    revealElements.forEach((element) => observer.observe(element));
-
-    let countersStarted = false;
-
-    function animateCounters() {
-      if (countersStarted) return;
-
-      const statsPosition = document.querySelector(".stats").getBoundingClientRect().top;
-      if (statsPosition < window.innerHeight - 60) {
-        countersStarted = true;
-
-        counters.forEach((counter) => {
-          const target = Number(counter.dataset.target);
-          const duration = 1200;
-          const start = performance.now();
-
-          function updateCounter(time) {
-            const progress = Math.min((time - start) / duration, 1);
-            counter.textContent = Math.floor(progress * target);
-
-            if (progress < 1) {
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.textContent = target + (target > 1 ? "+" : "");
-            }
-          }
-
-          requestAnimationFrame(updateCounter);
-        });
-      }
-    }
-
-    window.addEventListener("scroll", animateCounters);
-    animateCounters();
-
-    document.getElementById("randomBtn").addEventListener("click", () => {
-      const item = discoveries[Math.floor(Math.random() * discoveries.length)];
-      document.getElementById("randomTitle").textContent = item.title;
-      document.getElementById("randomText").textContent = item.text;
-    });
-
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        filterButtons.forEach((btn) => btn.classList.remove("active"));
-        button.classList.add("active");
-
-        const selected = button.dataset.filter;
-
-        galleryItems.forEach((item) => {
-          const show = selected === "all" || item.dataset.category === selected;
-          item.style.display = show ? "block" : "none";
-        });
-      });
-    });
-
-    galleryItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        const image = item.querySelector("img");
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
-        modalCaption.textContent = item.dataset.caption;
-        modal.classList.add("open");
-        modal.setAttribute("aria-hidden", "false");
-      });
-    });
-
-    function closeModal() {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      modalImage.src = "";
-    }
-
-    modalClose.addEventListener("click", closeModal);
-
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeModal();
+      contactForm.reset();
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
