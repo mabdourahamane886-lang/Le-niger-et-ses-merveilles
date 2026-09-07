@@ -6,14 +6,21 @@ from .models import MediaGalerie, Merveille, Region
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):
     list_display = ("nom", "slug")
-    search_fields = ("nom", "resume")
     prepopulated_fields = {"slug": ("nom",)}
+    search_fields = ("nom",)
 
 
 @admin.register(Merveille)
 class MerveilleAdmin(admin.ModelAdmin):
-    list_display = ("titre", "region", "categorie", "est_a_la_une", "publie", "cree_le")
-    list_filter = ("categorie", "region", "est_a_la_une", "publie")
+    list_display = (
+        "titre",
+        "region",
+        "categorie",
+        "est_a_la_une",
+        "publie",
+        "cree_le",
+    )
+    list_filter = ("region", "categorie", "est_a_la_une", "publie")
     search_fields = ("titre", "resume", "contenu")
     prepopulated_fields = {"slug": ("titre",)}
 
