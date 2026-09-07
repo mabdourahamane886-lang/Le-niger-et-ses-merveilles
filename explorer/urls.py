@@ -1,11 +1,10 @@
 from django.urls import path
-
-from .views import accueil, merveille_detail, region_detail
+from . import views
 
 app_name = "explorer"
 
 urlpatterns = [
-    path("", accueil, name="accueil"),
-    path("regions/<slug:slug>/", region_detail, name="region_detail"),
-    path("merveilles/<slug:slug>/", merveille_detail, name="merveille_detail"),
+    path("", views.accueil, name="accueil"),
+    path("regions/<slug:slug>/", views.region_detail, name="region_detail"),
+    path("merveilles/<slug:slug>/", views.merveille_detail, name="merveille_detail"),
 ]
