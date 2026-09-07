@@ -23,7 +23,11 @@
       <h1>{{ merveille.titre }}</h1>
       <p>{{ merveille.resume }}</p>
       <div class="intro-text">{{ merveille.contenu|linebreaks }}</div>
-      {% if merveille.credit_photo %}<small>{{ merveille.credit_photo }}</small>{% endif %}
+      {% if merveille.credit_photo %}
+        <p class="credit-photo">
+          {{ merveille.credit_photo }}
+        </p>
+      {% endif %}
       <p><a class="btn" href="{% url 'explorer:accueil' %}">Retour à l'accueil</a></p>
     </article>
   </main>
