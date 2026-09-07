@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Le Niger et ses merveilles — un voyage au coeur d'un pays de lumière, de sable et de traditions.">
+  <title>Le Niger & ses merveilles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="{% url 'explorer:accueil' %}"><span class="brand-mark">N</span><span>Le Niger<br>et ses merveilles</span></a>
+      <button class="menu" aria-label="Ouvrir le menu">☰</button>
+      <nav class="nav-links">
+        <a href="#destinations">Destinations</a>
+        <a href="#heritage">Héritage</a>
+        <a href="#inspiration">Inspiration</a>
+        <a class="nav-cta" href="#contact">Préparer mon voyage ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=2200&q=85" alt="Dunes dorées du désert">
+      <div class="hero-content">
+        <p class="kicker">Là où commence l'aventure</p>
+        <h1>Le Niger,<br><em>en majesté.</em></h1>
+        <p class="hero-copy">Un territoire immense, une lumière unique et des histoires qui se racontent depuis des siècles.</p>
+        <a class="btn" href="#destinations">Explorer les merveilles <span>↗</span></a>
+      </div>
+      <div class="hero-scroll">Défiler pour découvrir</div>
+    </section>
+    <section class="container intro" id="inspiration">
+      <div><p class="eyebrow">Un pays à ressentir</p><h2>Plus qu'une destination, une émotion.</h2></div>
+      <div class="intro-text"><p>Du silence majestueux du Sahara aux rives vivantes du fleuve Niger, chaque horizon révèle une nouvelle facette d'un pays profondément authentique.</p><p>Ici, le voyage prend son temps. Il se partage autour d'un thé, se danse au rythme des traditions et se grave dans la mémoire.</p><div class="signature"><span></span>Bienvenue au Niger</div></div>
+    </section>
+    <section class="discover" id="destinations">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Les incontournables</p><h2>Des paysages<br>qui restent.</h2></div><p>Trois escales. Trois atmosphères. Une même invitation à regarder le monde autrement.</p></div>
+        <div class="places">
+          {% for merveille in merveilles %}
+          <article class="place"><img src="{% if merveille.image_principale %}{{ merveille.image_principale.url }}{% else %}https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80{% endif %}" alt="{{ merveille.titre }}"><div class="place-info"><small>{{ forloop.counter|stringformat:"02d" }} — {{ merveille.region.nom }}</small><h3>{{ merveille.titre }}</h3><p>{{ merveille.resume }}</p></div></article>
+          {% empty %}
+          <article class="place"><img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80" alt="Dunes du Sahara"><div class="place-info"><small>01 — Ténéré</small><h3>L'infini</h3><p>Le désert dans sa forme la plus pure.</p></div></article>
+          <article class="place"><img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80" alt="Paysage du Niger"><div class="place-info"><small>02 — Agadez</small><h3>La porte du désert</h3><p>Une cité millénaire sculptée par le vent et le soleil.</p></div></article>
+          <article class="place"><img src="https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=900&q=80" alt="Paysage naturel"><div class="place-info"><small>03 — Kouré</small><h3>À l'état sauvage</h3><p>Une rencontre rare avec les derniers girafes d'Afrique de l'Ouest.</p></div></article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <section class="container story" id="heritage">
+      <div class="story-image"><img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1100&q=80" alt="Silhouette dans les dunes"><div class="story-note">La beauté<br>est partout.</div></div>
+      <div class="story-copy"><p class="eyebrow">L'âme du Niger</p><h2>Des racines profondes, un regard vers demain.</h2><p>Peuple de rencontres et de passages, le Niger porte en lui une mosaïque de cultures. Touaregs, Haoussas, Zarmas, Peuls et bien d'autres font vivre un patrimoine d'une richesse exceptionnelle.</p><div class="facts"><div class="fact"><strong>7</strong><span>régions naturelles</span></div><div class="fact"><strong>1 267</strong><span>km de fleuve Niger</span></div><div class="fact"><strong>10+</strong><span>peuples et cultures</span></div></div></div>
+    </section>
+    <section class="quote" id="contact"><div class="container"><blockquote>« Le Niger ne se visite pas.<br>Il se laisse découvrir. »</blockquote><cite>Le voyage commence ici</cite></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><strong>Le Niger & ses merveilles</strong><span>Un hommage à la beauté de notre pays · © 2024</span></div></footer>
+  <script src="{% static 'js/site.js' %}"></script>
+</body>
+</html>
