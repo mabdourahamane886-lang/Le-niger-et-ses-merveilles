@@ -42,8 +42,8 @@
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">Les incontournables</p><h2>Des paysages<br>qui restent.</h2></div><p>Trois escales. Trois atmosphères. Une même invitation à regarder le monde autrement.</p></div>
         <div class="places">
-          {% for merveille in merveilles %}
-          <article class="place"><img src="{% if merveille.image_principale %}{{ merveille.image_principale.url }}{% else %}https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80{% endif %}" alt="{{ merveille.titre }}"><div class="place-info"><small>{{ forloop.counter|stringformat:"02d" }} — {{ merveille.region.nom }}</small><h3>{{ merveille.titre }}</h3><p>{{ merveille.resume }}</p></div></article>
+          {% for merveille in a_la_une %}
+          <article class="place"><a href="{% url 'explorer:merveille_detail' merveille.slug %}"><img src="{% if merveille.image_principale %}{{ merveille.image_principale.url }}{% else %}https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80{% endif %}" alt="{{ merveille.titre }}"><div class="place-info"><small>{{ forloop.counter|stringformat:"02d" }} — {{ merveille.region.nom }}</small><h3>{{ merveille.titre }}</h3><p>{{ merveille.resume }}</p></div></a></article>
           {% empty %}
           <article class="place"><img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=900&q=80" alt="Dunes du Sahara"><div class="place-info"><small>01 — Ténéré</small><h3>L'infini</h3><p>Le désert dans sa forme la plus pure.</p></div></article>
           <article class="place"><img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80" alt="Paysage du Niger"><div class="place-info"><small>02 — Agadez</small><h3>La porte du désert</h3><p>Une cité millénaire sculptée par le vent et le soleil.</p></div></article>
