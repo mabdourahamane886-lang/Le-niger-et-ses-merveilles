@@ -10,7 +10,13 @@
 <body>
   <main class="container story">
     <div class="story-image">
-      {% if merveille.image_principale %}<img src="{{ merveille.image_principale.url }}" alt="{{ merveille.titre }}">{% endif %}
+      {% if merveille.image_principale %}
+        <img
+          src="{{ merveille.image_principale.url }}"
+          alt="{{ merveille.titre }} au Niger"
+          loading="lazy"
+        >
+      {% endif %}
     </div>
     <article class="story-copy">
       <p class="eyebrow">{{ merveille.get_categorie_display }} · {{ merveille.region.nom }}</p>
